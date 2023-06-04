@@ -1,0 +1,65 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
+        int t = Integer.parseInt(in.readLine().trim());
+        while(t-- > 0)
+        {
+            String s;
+            s = in.readLine().trim();
+            
+            Solution ob = new Solution();
+            
+            out.println(ob.reverseEqn(s));    
+        }
+        out.close();
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+class Solution
+{
+   
+    String reverseEqn(String S)
+    {
+        // your code here
+        S = S.replaceAll("\\s", "");
+
+        // Split the equation into tokens using operators as separators
+        String[] tokens = S.split("(?<=[+\\-*/])|(?=[+\\-*/])");
+
+        // Reverse the array of tokens
+        reverseArray(tokens);
+
+        // Build the output string
+        StringBuilder output = new StringBuilder();
+        for (String token : tokens) {
+            output.append(token);
+        }
+
+        return output.toString();
+    }
+
+    private static void reverseArray(String[] array) {
+        int left = 0;
+        int right = array.length - 1;
+        while (left < right) {
+            String temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+            left++;
+            right--;
+        }
+        
+    }
+}
